@@ -56,3 +56,13 @@ https://docs.google.com/spreadsheets/d/1nccOCEtorkDBOiXfv4UVzcn0i0rKVta_MtfGpqzK
 * kaminari
 * pry-rails
 * better_errors
+
+**使用予定技術**
+* * *
+【就業Term】
+* device
+* Ajax
+* AWS
+【カリキュラム外】
+* ransack
+* rails_admin
