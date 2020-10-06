@@ -63,6 +63,7 @@ https://docs.google.com/spreadsheets/d/1nccOCEtorkDBOiXfv4UVzcn0i0rKVta_MtfGpqzK
 * device
 * Ajax
 * AWS
+
 【カリキュラム外】
 * ransack
 * rails_admin
