@@ -49,6 +49,7 @@ https://docs.google.com/spreadsheets/d/1nccOCEtorkDBOiXfv4UVzcn0i0rKVta_MtfGpqzK
 * ransack
 * carrierwave
 * mini_magic
+* fog
 * rails_admin
 * cancancan
 * bootstrap 4
