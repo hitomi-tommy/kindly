@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :update]
   def index
     @items = Item.all
   end
@@ -17,15 +18,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to items_path, notice: "編集しました！"
     else
@@ -36,5 +34,9 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :description, :images, :budget, :deadline, :status)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
