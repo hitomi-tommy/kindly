@@ -1,7 +1,10 @@
 <h3>詳細画面</h3>
 <p>品名: <%= @item.name %></p>
 <p>説明: <%= @item.description %></p>
-<p>イメージ画像: <%= @item.images %></p>
+<p><strong>イメージ画像:</strong>
+  <% @item.images.each do |image|%>
+    <%= image_tag image.url %>
+  <% end %></p>
 <p>予算: <%= @item.budget %></p>
 <p>希望期限: <%= @item.deadline %></p>
 <!-- <p>カテゴリー: <%#= @item.category %></p> -->

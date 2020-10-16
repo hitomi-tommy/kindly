@@ -14,7 +14,7 @@
     <tr>
       <td><%= item.name %></td>
       <td><%= item.description %></td>
-      <td><%= item.images %></td>
+      <td><%= image_tag item.images.first.to_s %></td>
       <td><%= item.budget %></td>
       <td><%= item.deadline %></td>
       <!-- <td><#= item.category %></td>     -->
