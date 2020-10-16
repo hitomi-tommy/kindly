@@ -1,0 +1,27 @@
+<p><%= notice %></p>
+<h1>投稿一覧</h1>
+<table>
+  <tr>
+  <th>品名</th>
+  <th>説明</th>
+  <th>イメージ画像</th>
+  <th>予算</th>
+  <th>希望期限</th>
+  <!-- <th>カテゴリー</th> -->
+  <th>情報募集状況</th>
+  </tr>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.description %></td>
+      <td><%= item.images %></td>
+      <td><%= item.budget %></td>
+      <td><%= item.deadline %></td>
+      <!-- <td><#= item.category %></td>     -->
+      <td><%= item.status %></td>
+      <td><%= link_to '詳細', item_path(item.id) %></td>
+      <td><%= link_to "編集する", edit_item_path(item.id) %></td>
+      <td><%= link_to '削除する', item_path(item.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+    </tr>
+  <% end %>
+</table>
