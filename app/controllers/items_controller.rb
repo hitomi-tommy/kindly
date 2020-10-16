@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    @items = Item.all
   end
 
   def new
@@ -7,7 +8,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create(params.require(:item).permit(:name, :description, :images, :budget, :deadline, :status))
+    Item.create(item_params)
     redirect_to items_path
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:name, :description, :images, :budget, :deadline, :status)
   end
 end
