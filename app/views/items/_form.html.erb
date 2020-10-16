@@ -9,37 +9,41 @@
     </ul>
   </div>
   <% end %>
-<div class="field">
-<%= form.label :商品名 %>
-<%= form.text_field :name %>
-</div>
-<div class="field">
-<%= form.label :説明 %>
-<%= form.text_area :description %>
-</div>
-<div class="field">
-<%= form.label :イメージ画像 %>
-<%= form.file_field :images %>
-</div>
-<div class="field">
-<%= form.label :予算 %>
-<%= form.text_field :budget %>
-</div>
-<div class="field">
-<%= form.label :希望期限 %>
-<%= form.date_field :deadline %>
-</div>
-<!-- <div class="field">
-<%#= form.label :カテゴリー %>
-<%#= form.select :category %>
-</div> -->
-<div class="field">
-<%= form.label :情報募集状況 %>
-<%= form.select :status, [ "募集中", "募集終了" ] %>
-</div>
-<div class="actions">
-<%= form.submit %>
-</div>
+  <div class="field">
+    <%= form.label :商品名 %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :説明 %>
+    <%= form.text_area :description %>
+  </div>
+  <div class="field">
+    <%= form.label :イメージ画像 %>
+    <% @item.images.each do |image| %>
+      <%= hidden_field :item, :images, multiple: true, value: image.identifier %>
+      <%= image_tag image.url %>
+    <% end %>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+  <div class="field">
+    <%= form.label :予算 %>
+    <%= form.text_field :budget %>
+  </div>
+  <div class="field">
+    <%= form.label :希望期限 %>
+    <%= form.date_field :deadline %>
+  </div>
+  <!-- <div class="field">
+  <%#= form.label :カテゴリー %>
+  <%#= form.select :category %>
+  </div> -->
+  <div class="field">
+    <%= form.label :情報募集状況 %>
+    <%= form.select :status, [ "募集中", "募集終了" ] %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>
 
 <%= link_to "一覧画面にもどる", items_path %>
