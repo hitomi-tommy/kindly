@@ -19,6 +19,7 @@
       <!-- <td><#= item.category %></td>     -->
       <td><%= item.status %></td>
       <td><%= link_to '詳細', item_path(item.id) %></td>
+      <td><%= link_to "編集する", edit_item_path(item.id) %></td>
     </tr>
   <% end %>
 </table>
