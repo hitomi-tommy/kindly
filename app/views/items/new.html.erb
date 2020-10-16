@@ -1,4 +1,14 @@
 <%= form_with(model: @item, local: true) do |form| %>
+  <% if @item.errors.any? %>
+  <div id="error_explanation">
+  <h2><%= @item.errors.count %>件のエラーがあります。</h2>
+    <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 <div class="field">
 <%= form.label :商品名 %>
 <%= form.text_field :name %>
