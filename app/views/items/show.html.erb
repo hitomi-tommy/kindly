@@ -1,19 +1,34 @@
-<h3>投稿詳細</h3>
-<p>投稿ユーザー: <%= @item.user.name %></p>
-<p>品名: <%= @item.name %></p>
-<p>説明: <%= @item.description %></p>
-<p><strong>イメージ画像:</strong>
-  <% @item.images.each do |image|%>
-    <%= image_tag image.url %>
-  <% end %></p>
-<p>予算: <%= @item.budget %></p>
-<p>希望期限: <%= @item.deadline %></p>
-<!-- <p>カテゴリー: <%#= @item.category %></p> -->
-<p>情報募集状況: <%= @item.status %></p>
-<p>いいね件数: <%= @item.likes.count %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="item-info">
+    <h3>投稿詳細</h3>
+    <p>投稿ユーザー: <%= @item.user.name %></p>
+    <p>品名: <%= @item.name %></p>
+    <p>説明: <%= @item.description %></p>
+    <p><strong>イメージ画像:</strong>
+      <% @item.images.each do |image|%>
+        <%= image_tag image.url %>
+      <% end %></p>
+    <p>予算: <%= @item.budget %></p>
+    <p>希望期限: <%= @item.deadline %></p>
+    <!-- <p>カテゴリー: <%#= @item.category %></p> -->
+    <p>情報募集状況: <%= @item.status %></p>
+    <p>いいね件数: <%= @item.likes.count %></p>
 
-<% if current_user.already_liked?(@item) %>
-  <%= button_to 'いいねを取り消す', item_like_path(@item), method: :delete, class: 'btn btn-danger'%>
-<% else %>
-  <%= button_to 'いいね', item_likes_path(@item), method: :post, class: 'btn btn-primary' %>
-<% end %>
+    <% if current_user.already_liked?(@item) %>
+      <%= button_to 'いいねを取り消す', item_like_path(@item), method: :delete, class: 'btn btn-danger'%>
+    <% else %>
+      <%= button_to 'いいね', item_likes_path(@item), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <p>コメント一覧</p>
+  <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+  <div id="comments_area">
+    <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+    <%= render partial: 'comments/index', locals: { comments: @comments, item: @item } %>
+  </div>
+  <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+  <%= render partial: 'comments/form', locals: { comment: @comment, item: @item } %>
+  <%= link_to '編集', edit_item_path(@item) %> |
+  <%= link_to '戻る', items_path %>
+</div>
