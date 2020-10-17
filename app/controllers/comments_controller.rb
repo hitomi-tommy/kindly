@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_item, only: [:create, :edit, :update]
   def create
-    @item = Item.find(params[:item_id])
     @comment = @item.comments.build(comment_params)
     respond_to do |format|
       if @comment.save
@@ -31,6 +30,16 @@ class CommentsController < ApplicationController
         end
       end
   end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      flash.now[:notice] = 'コメントが削除されました'
+      format.js { render :index }
+    end
+  end
+
   private
   # ストロングパラメーター
   def comment_params
@@ -38,6 +47,6 @@ class CommentsController < ApplicationController
   end
 
   def set_item
-    @item = item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
   end
 end
