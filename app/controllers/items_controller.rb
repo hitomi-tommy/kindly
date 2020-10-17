@@ -20,6 +20,8 @@ class ItemsController < ApplicationController
 
   def show
     @like = current_user.likes.find_by(item_id: @item.id)
+    @comments = @item.comments
+    @comment = @item.comments.build
   end
 
   def edit
