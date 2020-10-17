@@ -1,4 +1,5 @@
-<h3>詳細画面</h3>
+<h3>投稿詳細</h3>
+<p>投稿ユーザー: <%= @item.user.name %></p>
 <p>品名: <%= @item.name %></p>
 <p>説明: <%= @item.description %></p>
 <p><strong>イメージ画像:</strong>
@@ -9,3 +10,10 @@
 <p>希望期限: <%= @item.deadline %></p>
 <!-- <p>カテゴリー: <%#= @item.category %></p> -->
 <p>情報募集状況: <%= @item.status %></p>
+<p>いいね件数: <%= @item.likes.count %></p>
+
+<% if current_user.already_liked?(@item) %>
+  <%= button_to 'いいねを取り消す', item_like_path(@item), method: :delete, class: 'btn btn-danger'%>
+<% else %>
+  <%= button_to 'いいね', item_likes_path(@item), method: :post, class: 'btn btn-primary' %>
+<% end %>
