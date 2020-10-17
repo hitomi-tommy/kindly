@@ -10,8 +10,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
-    if @item.save
+    @item = current_user.items.build(item_params)
+    if current_user.save && @item.save
       redirect_to items_path
     else
       render :new
@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @like = current_user.likes.find_by(item_id: @item.id)
   end
 
   def edit
@@ -33,8 +34,13 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
-    redirect_to items_path, notice:"削除しました！"
+    if current_user.id == @item.user_id
+      @item.destroy
+      redirect_to items_path, notice:"投稿を削除しました！"
+    else
+      flash.now[:error] = "削除できませんでした"
+      redirect_to items_path
+    end
   end
 
   private
