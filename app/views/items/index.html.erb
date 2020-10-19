@@ -3,13 +3,29 @@
 <% else %>
   <h1>投稿一覧</h1>
 <% end %>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :name_or_description, "Keyword" %>
+  <%= f.search_field :name_or_description_cont %>
+
+  <%= f.label :budget %>
+  <%= f.number_field :budget_gteq %>円以上〜
+  <%= f.number_field :budget_lt %>円未満
+
+  <%= f.label :status %>
+  <%= f.check_box :status_eq, {}, "募集中", "募集終了" %>募集中のみ表示
+
+  <%= link_to "クリア", 'items#index', type: "button"%>
+  <%= f.submit "検索" %>
+<% end %>
+
 <table>
   <tr>
   <th>品名</th>
   <th>説明</th>
   <th>イメージ画像</th>
-  <th>予算</th>
-  <th>希望期限</th>
+  <th><%= sort_link(@q, :budget, "予算") %></th>
+  <th><%= sort_link(@q, :deadline, "希望期限") %></th>
   <!-- <th>カテゴリー</th> -->
   <th>情報募集状況</th>
   </tr>
