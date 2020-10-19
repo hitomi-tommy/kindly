@@ -24,10 +24,10 @@
   <p>コメント一覧</p>
   <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
   <div id="comments_area">
-    <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+    <!-- 投稿されたコメント一覧をitemの詳細ページに表示するためのrender -->
     <%= render partial: 'comments/index', locals: { comments: @comments, item: @item } %>
   </div>
-  <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+  <!-- コメント入力欄をitemの詳細ページに表示するためのrender -->
   <%= render partial: 'comments/form', locals: { comment: @comment, item: @item } %>
   <%= link_to '編集', edit_item_path(@item) %> |
   <%= link_to '戻る', items_path %>
