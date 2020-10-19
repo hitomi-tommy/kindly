@@ -1,5 +1,8 @@
-<!-- <p><%= notice %></p> -->
-<h1>投稿一覧</h1>
+<% if current_user.try(:admin?) %>
+  <h1>管理者投稿一覧</h1>
+<% else %>
+  <h1>投稿一覧</h1>
+<% end %>
 <table>
   <tr>
   <th>品名</th>
