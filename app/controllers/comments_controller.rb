@@ -1,12 +1,15 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_item, only: [:create, :edit, :update]
   def create
     @comment = @item.comments.build(comment_params)
     respond_to do |format|
       if @comment.save
+        # @item.create_notification_comment!(current_user, @comment.id)
+        flash.now[:notice] = 'コメントしました'
         format.js { render :index }
       else
-        format.html { redirect_to item_path(@item), notice: '投稿できませんでした...' }
+        format.html { redirect_to item_path(@item), notice: 'コメントできませんでした' }
       end
     end
   end

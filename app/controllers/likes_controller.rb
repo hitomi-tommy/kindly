@@ -4,7 +4,7 @@ class LikesController < ApplicationController
     like.save
     @item = Item.find(params[:item_id])
     #通知の作成
-    @item.create_notification_by(current_user)
+    @item.create_notification_like!(current_user)
     respond_to do |format|
       format.html {redirect_to request.referrer}
       format.js

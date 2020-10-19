@@ -1,6 +1,9 @@
-<% notifications = @notifications %>
-<% if notifications.exists? %>
-  <%= render @notifications %>
+<h3 class="text-center">通知</h3>
+    <%= link_to "通知削除", notifications_url(@notifications), method: :delete ,class: "fas fa-trash" %>
+    <% if @notifications.exists? %>
+    <div class="notification-index">
+        <%= render @notifications %>
+    </div>
 <% else %>
-  <p>通知はありません</p>
+    <p>通知はありません</p>
 <% end %>
