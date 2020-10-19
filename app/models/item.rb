@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   has_many :liked_items, through: :likes, source: :item
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  enum status: { 募集中: 0, 募集終了: 1 }
 
   def create_notification_by(current_user)
     notification = current_user.active_notifications.new(
