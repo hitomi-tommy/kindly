@@ -14,7 +14,7 @@
 <%= @user.introduction%>
 
 <div>
-  <% if current_user %>
+  <% if @user == current_user %>
     <%= link_to "プロフィールの編集", edit_user_registration_path %>
   <% end %>
 </div>

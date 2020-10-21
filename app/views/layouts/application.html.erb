@@ -11,6 +11,7 @@
 
   <body>
     <% if user_signed_in? %>
+      <%= link_to "Home", items_path %>
       <%= link_to "新規投稿", new_item_path %>
       <%= link_to "マイページ", user_path(current_user) %>
       <%= link_to "通知", notifications_path %>
