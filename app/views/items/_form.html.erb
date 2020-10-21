@@ -33,10 +33,24 @@
     <%= form.label :希望期限 %>
     <%= form.date_field :deadline %>
   </div>
-  <!-- <div class="field">
-  <%#= form.label :カテゴリー %>
-  <%#= form.select :category %>
-  </div> -->
+  <div class="field">
+  <%= form.label :カテゴリー %>
+  <%= form.select :category, [
+                        'レディース',
+                        'メンズ',
+                        'ベビー・キッズ',
+                        'インテリア・住まい・小物',
+                        '本・音楽・ゲーム',
+                        'おもちゃ・ホビー・グッズ',
+                        'コスメ・香水・美容',
+                        '家電・スマホ・カメラ',
+                        'スポーツ・レジャー',
+                        'ハンドメイド',
+                        'チケット',
+                        '自動車・オートバイ',
+                        'その他',
+                      ], {prompt: "選択してください"} %>
+  </div>
   <div class="field">
     <%= form.label :情報募集状況 %>
     <%= form.select :status, [ "募集中", "募集終了" ] %>
