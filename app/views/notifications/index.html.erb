@@ -1,5 +1,6 @@
 <h3 class="text-center">通知</h3>
-    <%= link_to "通知削除", notifications_url(@notifications), method: :delete ,class: "fas fa-trash" %>
+    <%#= link_to "通知削除", notifications_url(@notifications), method: :delete ,class: "fas fa-trash" %>
+    <% @notifications = @notifications.where.not(visitor_id:  current_user.id) %>
     <% if @notifications.exists? %>
     <div class="notification-index">
         <%= render @notifications %>

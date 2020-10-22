@@ -12,6 +12,23 @@
   <%= f.number_field :budget_gteq %>円以上〜
   <%= f.number_field :budget_lt %>円未満
 
+  <%= f.label :category %>
+  <%= f.select :category_eq, [
+                        'レディース',
+                        'メンズ',
+                        'ベビー・キッズ',
+                        'インテリア・住まい・小物',
+                        '本・音楽・ゲーム',
+                        'おもちゃ・ホビー・グッズ',
+                        'コスメ・香水・美容',
+                        '家電・スマホ・カメラ',
+                        'スポーツ・レジャー',
+                        'ハンドメイド',
+                        'チケット',
+                        '自動車・オートバイ',
+                        'その他',
+                      ], {prompt: "選択してください"} %>
+
   <%= f.label :status %>
   <%= f.check_box :status_eq, {}, "募集中", "募集終了" %>募集中のみ表示
 
@@ -26,7 +43,7 @@
   <th>イメージ画像</th>
   <th><%= sort_link(@q, :budget, "予算") %></th>
   <th><%= sort_link(@q, :deadline, "希望期限") %></th>
-  <!-- <th>カテゴリー</th> -->
+  <th>カテゴリー</th>
   <th>情報募集状況</th>
   </tr>
   <% @items.each do |item| %>
@@ -35,12 +52,14 @@
       <td><%= item.description %></td>
       <td><%= image_tag item.images.first.to_s %></td>
       <td><%= item.budget %></td>
-      <td><%= item.deadline %></td>
-      <!-- <td><#= item.category %></td>     -->
+      <td><%= l(item.deadline, format: :short) if item.deadline %></td>
+      <td><%= item.category %></td>
       <td><%= item.status %></td>
       <td><%= link_to '詳細', item_path(item.id) %></td>
-      <td><%= link_to "編集する", edit_item_path(item.id) %></td>
-      <td><%= link_to '削除する', item_path(item.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+      <% if current_user == item.user %>
+        <td><%= link_to "編集する", edit_item_path(item.id) %></td>
+        <td><%= link_to '削除する', item_path(item.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>

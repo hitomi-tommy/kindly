@@ -1,11 +1,20 @@
-<h1>about me</h1>
+<h1>My Profile</h1>
+<div>
+  <% if @user.icon? %>
+    <%= image_tag @user.icon_url %>
+  <% else %>
+    <%= image_tag "/assets/default.png" %>
+  <% end %>
 
+</div>
 <h3>ユーザー名</h3>
 <%= @user.name %>
-<h3>メールアドレス</h3>
-<%= @user.email %>
+
 <h3>プロフィール</h3>
 <%= @user.introduction%>
-<% if @user.icon? %>
-  <%= image_tag @user.icon_url %>
-<% end %>
+
+<div>
+  <% if @user == current_user %>
+    <%= link_to "プロフィールの編集", edit_user_registration_path %>
+  <% end %>
+</div>

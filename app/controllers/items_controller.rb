@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :show, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   def index
     # @items = Item.all
@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, { images: [] }, :budget, :deadline, :status)
+    params.require(:item).permit(:name, :description, { images: [] }, :category, :budget, :deadline, :status)
   end
 
   def set_item
