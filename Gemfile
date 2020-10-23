@@ -20,6 +20,9 @@ gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
 gem 'ransack'
 gem 'faker'
+gem 'font-awesome-rails'
+gem 'bootstrap', '~> 4.5.0'
+gem 'jquery-rails'
 
 
 group :development, :test do

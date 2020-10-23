@@ -1,0 +1,20 @@
+ja:
+  view:
+    signup: 新規登録
+    login: ログイン
+    logout: ログアウト
+    Name: 品名
+    Description: 説明
+    Keyword: キーワード
+    Budget: 予算
+    Category : カテゴリー
+    Status: 募集のステータス
+
+  activerecord:
+    models:
+      item:
+    attributes:
+      item:
+        name: 品名
+        description: 説明
+  
