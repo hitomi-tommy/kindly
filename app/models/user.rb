@@ -13,7 +13,7 @@ class User < ApplicationRecord
   mount_uploader :icon, ImageUploader
 
   validates :name, presence: true, length: { maximum: 20 }
-  validates :introduction, length: { maximum: 1000 }
+  validates :introduction, length: { maximum: 500 }
   attr_accessor :current_password
 
   def already_liked?(item)

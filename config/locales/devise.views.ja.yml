@@ -26,6 +26,7 @@ ja:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
         name: ユーザーネーム
+        profile: プロフィール
     models:
       user: ユーザ
   devise:
@@ -112,7 +113,7 @@ ja:
     sessions:
       already_signed_out: 既にログアウト済みです。
       new:
-        sign_in: ログイン
+        sign_in: ログインする
       signed_in: ログインしました。
       signed_out: ログアウトしました。
     shared:
