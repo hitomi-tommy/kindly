@@ -19,10 +19,33 @@
 </div>
 
 <div class="jumbotron jumbotron-fluid">
-<div class="container">
-  <h1 class="display-4">探し物をたずねてみよう</h1>
-  <p class="lead">ずっと探しているものは、誰かの部屋の隅に眠っているかもしれない。</p>
-  <a class="btn btn-primary btn-lg" href="/users/sign_up" role="button">新規登録</a>
-  <a class="btn btn-light btn-lg" href="/users/sign_in" role="button">ログイン</a>
+  <div class="container">
+    <h1 class="display-4">探し物をたずねてみよう</h1>
+    <p class="lead">ずっと探しているものは、誰かの部屋の隅に眠っているかもしれない。</p>
+    <a class="btn btn-primary btn-lg" href="/users/sign_up" role="button">新規登録</a>
+    <a class="btn btn-light btn-lg" href="/users/sign_in" role="button">ログイン</a>
+  </div>
 </div>
+
+<div class="container">
+  <div class="col">
+    <p class= "text-center h4 font-weight-bold">新着</p>
+    <hr class="divider">
+      <div class="row">
+        <% @items.each do |item| %>
+         <div class="card", style="width: 16rem;">
+           <div class="card-img-caption">
+             <div class="card-body">
+              <% if item.status == "募集終了" %>
+                <p class="card-text">Closed</p>
+              <% end %>
+              <%= image_tag item.images.first.to_s, gravity: :center, size: "200x200" %>
+              <h5 class="card-title"><%= link_to item.name.truncate(10) , item_path(item) %></h5>
+              <p class="card-text-description"><%= item.description.truncate(30)  %></p>
+             </div>
+           </div>
+         </div>
+        <% end %>
+      </div>
+  </div>
 </div>

@@ -34,3 +34,13 @@
    color: white;
    height: 35rem;
 }
+
+.card-img-caption .card-text {
+  text-align: left;
+  transform: rotate(-30deg);
+  font-size: 50px;
+  color: red;
+  width: 100%;
+  margin: 10%;
+  position: absolute;
+}
