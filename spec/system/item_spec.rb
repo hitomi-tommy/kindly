@@ -2,9 +2,9 @@ require 'rails_helper'
 RSpec.describe '投稿管理機能', type: :system do
   describe '投稿一覧画面' do
     before do
-      @user = create(:admin)
-      @item = create(:item, user: @user)
-      @item2 = create(:item2, user: @user)
+      @user = FactoryBot.create(:admin)
+      @item = FactoryBot.create(:item, user: @user)
+      @item2 = FactoryBot.create(:item2, user: @user)
       visit new_user_session_path
       fill_in "Eメール", with: "admin@example.com"
       fill_in "パスワード", with: "111111"
@@ -77,11 +77,9 @@ RSpec.describe '投稿管理機能', type: :system do
 
       it "金額で絞り込みができる" do
         visit items_path
-        fill_in 'q[budget_gteq]', with 
-        fill_in 'title', with: 'title'
+        fill_in 'q[budget_gteq]', with: '5000'
         click_button '検索'
-        expect(page).to have_content 'title'
-
+        expect(page).to have_content 'セーター2'
       end
     end
   end
