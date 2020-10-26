@@ -3,9 +3,10 @@ class CommentsController < ApplicationController
   before_action :set_item, only: [:create, :edit, :update]
   def create
     @comment = @item.comments.build(comment_params)
+    @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
-        # @item.create_notification_comment!(current_user, @comment.id)
+        @item.create_notification_comment!(current_user, @comment.id)
         flash.now[:notice] = 'コメントしました'
         format.js { render :index }
       else

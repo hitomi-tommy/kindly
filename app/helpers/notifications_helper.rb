@@ -14,9 +14,9 @@ module NotificationsHelper
     when 'comment' then
       #コメントの内容と投稿のタイトルを取得　
       @comment = Comment.find_by(id: @visitor_comment)
-      @comment_content =@comment.content
-      @item_description =@comment.item.description
-      tag.a(@visitor.name, href: user_path(@visitor)) + 'が' + tag.a("#{@item_description}", href: item_path(notification.item_id)) + 'にコメントしました'
+      @comment_content = @comment.content
+      @item_name = @comment.item.name
+      tag.a(@visitor.name, href: user_path(@visitor)) + 'が' + tag.a("#{@item_name}", href: item_path(notification.item_id)) + 'にコメントしました'
     end
   end
 end
