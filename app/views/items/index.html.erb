@@ -1,79 +1,87 @@
-<%# if current_user.try(:admin?) %>
-  <!-- <h1>管理者投稿一覧</h1> -->
-<%# else %>
-  <!-- <h1>投稿一覧</h1> -->
-<%# end %>
-
-<%= search_form_for @q do |f| %>
-  <%= f.search_field :name_or_description_cont, {placeholder: "キーワードで検索",class: "form-group form-control search_title" } %>
-
-  <%= f.number_field :budget_gteq %>円以上〜
-  <%= f.number_field :budget_lt %>円未満
-  <%= f.select :category_eq, [
-                        'レディース',
-                        'メンズ',
-                        'ベビー・キッズ',
-                        'インテリア・住まい・小物',
-                        '本・音楽・ゲーム',
-                        'おもちゃ・ホビー・グッズ',
-                        'コスメ・香水・美容',
-                        '家電・スマホ・カメラ',
-                        'スポーツ・レジャー',
-                        'ハンドメイド',
-                        'チケット',
-                        '自動車・オートバイ',
-                        'その他',
-                      ], {prompt: "選択してください"} %>
-
-  <%= f.check_box :status_eq, {}, "募集中", "募集終了" %>募集中のみ表示
-
-  <%= link_to "クリア", 'items#index', type: "button"%>
-  <%= f.submit "検索" %>
-<% end %>
-
-<table>
-  <tr>
-  <th>品名</th>
-  <th>説明</th>
-  <th>イメージ画像</th>
-  <th><%= sort_link(@q, :budget, "予算") %></th>
-  <th><%= sort_link(@q, :deadline, "希望期限") %></th>
-  <th>カテゴリー</th>
-  <th>情報募集状況</th>
-  </tr>
-  <% @items.each do |item| %>
-    <tr>
-      <td><%= item.name %></td>
-      <td><%= item.description %></td>
-      <td><%= image_tag item.images.first.to_s %></td>
-      <td><%= item.budget %>円</td>
-      <td><%= l(item.deadline, format: :short) if item.deadline %></td>
-      <td><%= item.category %></td>
-      <td><%= item.status %></td>
-      <td><%= link_to '詳細', item_path(item.id) %></td>
-      <% if current_user == item.user %>
-        <td><%= link_to "編集する", edit_item_path(item.id) %></td>
-        <td><%= link_to '削除する', item_path(item.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
-
-<div class="container">
-  <div class="row">
-      <div class="form-group float-left">
-        <%= form_with(url:items_path, local: true, method: :get) do |form| %>
-          <%= form.label :title_search, class: "text-primary" do %>
-            <i class="fas fa-leaf"> タイトル検索</i>
-          <% end %><br/>
-          <%= form.text_field :title ,class:"form-control"%><br/>
-          <%= form.label :label_id_search, class: "text-primary" do %>
-            <i class="fas fa-tags"> ラベル検索</i>
-          <% end %><br/>
-          <%#= form.select("label_id", Label.all.pluck(:name, :id), { include_blank:"選択する",include_hidden: false },  {  class: "form-control" }) %><br/>
-          <%= form.hidden_field :search, value:"true" %>
-          <%= form.submit name="検索する" , class: "form-control btn btn-info"%>
+<div class="search">
+    <div class="full-searchbox ">
+      <div class="SearchBox">
+        <!-- <i class="fas fa-search"></i> -->
+        <%= search_form_for @q do |f| %>
+          <p><%= f.search_field :name_or_description_cont, {placeholder: "キーワードで検索",class: "form-group form-control search_name" } %></p>
+          <p class="search_status"><%= f.check_box :status_eq, {}, "募集中", "募集終了" %>募集中のみ表示
+          <%= link_to "クリア", 'items#index',class: "btn btn-secondary search-clear"%>
+          <%= f.submit "検索",class: "btn btn-light search-search" %></p>
         <% end %>
       </div>
+    </div>
+    <span></span>
   </div>
-<div>
+</div>
+
+<div class="container">
+  <div id="row">
+    <div class="col-md-3">
+      <div class="sidebar">
+      <div class="form-group">
+        <%= search_form_for @q do |f| %>
+        <i class="fas fa-yen-sign">予算で検索</i>
+          <br/>
+          <%= f.number_field :budget_gteq %>円以上〜
+          <br/><br/>
+          <%= f.number_field :budget_lt %>円未満
+          <br/><br/>
+        <i class="fas fa-filter">カテゴリーで検索</i>
+          <%= f.select :category_eq, [
+                                'レディース',
+                                'メンズ',
+                                'ベビー・キッズ',
+                                'インテリア・住まい・小物',
+                                '本・音楽・ゲーム',
+                                'おもちゃ・ホビー・グッズ',
+                                'コスメ・香水・美容',
+                                '家電・スマホ・カメラ',
+                                'スポーツ・レジャー',
+                                'ハンドメイド',
+                                'チケット',
+                                '自動車・オートバイ',
+                                'その他',
+                              ], {prompt: "選択してください"}, class: "form-control" %><br/>
+
+
+          <%#= form.select("label_id", Label.all.pluck(:name, :id), { include_blank:"選択する",include_hidden: false },  {  class: "form-control" }) %>
+          <%= f.hidden_field :search, value:"true" %>
+          <%= f.submit name="検索する" , class: "form-control btn btn-info"%><br/><br/>
+          <%= link_to "クリア", 'items#index',class: "btn btn-secondary search-clear"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="col-md-9">
+      <div class="main">
+      <div class="row">
+        <% @items.each do |item| %>
+         <div class="card", style="width: 16rem;">
+           <div class="card-img-caption">
+             <div class="card-body">
+              <% if item.status == "募集終了" %>
+                <p class="card-text">Found</p>
+              <% end %>
+              <%= image_tag item.images.first.to_s, gravity: :center, size: "200x200" %>
+              <h5 class="card-name"><%= link_to item.name.truncate(10) , item_path(item) %></h5>
+              <h6 class="card-description"><%= item.description.truncate(30)  %></h6>
+              <h6 class="card-category"><%= item.category  %></h6>
+              <h6 class="card-budget">予算：<%= item.budget %>円</h6>
+              <h6 class="card-deadline"><%= l(item.deadline, format: :short) if item.deadline %></h6>
+              <h6 style="color: orange; font-size: 16px;"><%= item.status %></h6>
+              <h5 style="font-size: 16px;" ><%= link_to '詳細', item_path(item.id) %>
+              <% if current_user == item.user %>
+                <%= link_to "編集", edit_item_path(item.id) %>
+                <%= link_to '削除', item_path(item.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></h6>
+              <% end %>
+             </div>
+           </div>
+         </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</diV>
+</div>
