@@ -1,4 +1,6 @@
-<div class="mx-auto">
+<div class="container">
+
+
 <h1>My Profile</h1>
 <div>
   <% if @user.icon? %>
@@ -9,16 +11,41 @@
 
 </div>
 <h3>ユーザー名</h3>
-<%= @user.name %>
+<%= @user.name %><br/><br/>
 
 <h3>プロフィール</h3>
-<%= @user.introduction%>
+<%= @user.introduction%><br/><br/>
 
 <div>
   <% if @user == current_user %>
-    <%= link_to "プロフィールの編集", edit_user_registration_path %>
-    <%= link_to "お気に入り一覧" %>
-    <%= link_to "私の投稿一覧" %>
+    <p><%= link_to "プロフィールの編集", edit_user_registration_path %></p>
+    <h3>お気に入り一覧</h3>
+      <% @likes.each do |like| %>
+      <% item = Item.find_by(id: like.item_id) %>
+       <div class="card-body">
+          <%= image_tag item.images.first.to_s, gravity: :center, size: "200x200" %>
+          <h5 class="card-name"><%= link_to like.item.name.truncate(10) , item_path(item) %></h5>
+          <h6 class="card-description"><%= item.description.truncate(30)  %></h6>
+          <span class="card-category bg-warning"><%= item.category %></span>
+          <h6 class="card-budget">予算：<%= item.budget %>円</h6>
+          <h6 class="card-deadline"><%= l(item.deadline, format: :short) if item.deadline %></h6>
+          <h6 style="color: red; font-size: 16px;"><%= item.status %></h6>
+          <h5 style="font-size: 16px;" ><%= link_to '詳細を見る', item_path(item.id), class: "btn btn-primary" %>
+        </div>
+      <% end %><br/><br/>
+      <h3>私の投稿一覧</h3>
+        <% @items.each do |item| %>
+         <div class="card-body">
+            <%= image_tag item.images.first.to_s, gravity: :center, size: "200x200" %>
+            <h5 class="card-name"><%= link_to item.name.truncate(10) , item_path(item) %></h5>
+            <h6 class="card-description"><%= item.description.truncate(30)  %></h6>
+            <span class="card-category bg-warning"><%= item.category %></span>
+            <h6 class="card-budget">予算：<%= item.budget %>円</h6>
+            <h6 class="card-deadline"><%= l(item.deadline, format: :short) if item.deadline %></h6>
+            <h6 style="color: red; font-size: 16px;"><%= item.status %></h6>
+            <h5 style="font-size: 16px;" ><%= link_to '詳細を見る', item_path(item.id), class: "btn btn-primary" %>
+          </div>
+        <% end %>
   <% end %>
 </div>
 </div>
