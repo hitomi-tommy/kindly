@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
   has_many :items
+  has_many :comments
   has_many :likes, dependent: :destroy
   has_many :liked_items, through: :likes, source: :item
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy

@@ -5,10 +5,11 @@
         <div class="comment-content" id ="this_comment_<%= comment.id %>"></div>
         <%= l(comment.created_at, format: :short) %>
         <%= comment.content %>
-
+        <%= comment.user.name %>
+        <% if current_user == comment.user %>
           <%= link_to "編集", edit_item_comment_path(item, comment), remote: true, class: "text-info" %>
           <%= link_to "削除", item_comment_path(comment.item_id, comment.id), method: :delete, remote: true, remote: true , class: "text-info"%>
-        
+        <% end %>
       </li>
     <% end %>
   <% end %>
