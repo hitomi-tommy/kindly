@@ -32,13 +32,5 @@ RSpec.describe '投稿機能', type: :model, do: true do
       expect(item.errors[:description]).to be_present
       expect(item.errors[:status]).to be_present
     end
-    # it "画像(2数)でもバリデーションが通る" do
-    #   item = create(:item, images: [image, image])
-    #   expect(item).to be_valid
-    # end
-    # it "画像(3数)でもバリデーションが通る" do
-    #   item = create(:item, images: [image, image, image])
-    #   expect(item).to be_valid
-    end
   end
 end

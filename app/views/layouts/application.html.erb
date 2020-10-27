@@ -34,19 +34,30 @@
             <% if current_user.try(:admin?) %>
               <%= link_to "管理者画面", rails_admin_path %>
             <% end %>
+
+            <% if notice %>
+            <%= notice %>
+            <% end %>
+            <% if alert %>
+            <%= alert %>
+            <% end %>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- <div class="alert">
+    <!-- <div class="alert"> -->
       <%# if notice %>
-        <div class="alert alert-info"><%= notice %></p>
+        <!-- <div class="alert alert-info"><%#= notice %></p> -->
+      <%#= notice %>
       <%# end %>
       <%# if alert %>
-        <div class="alert alert-warning"><%#= alert %></p>
+      <%#= alert %>
+        <!-- <div class="alert alert-warning"><%#= alert %></p> -->
       <%# end %>
-    </div> -->
-    <%= yield %>
+    <!-- </div> -->
+
+      <%= yield %>
+
   </body>
 </html>

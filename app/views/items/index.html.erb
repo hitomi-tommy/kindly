@@ -3,7 +3,9 @@
       <div class="SearchBox">
         <%= search_form_for @q do |f| %>
           <p><%= f.search_field :name_or_description_cont, {placeholder: "キーワードで検索",class: "form-group form-control search_name" } %></p>
-          <p class="search_status"><%= f.check_box :status_eq, {}, "募集中", "募集終了" %>募集中のみ表示
+          <p class="search_status">
+            <%= f.check_box :status_eq, {}, "募集中", "募集終了" %>
+            <%= f.label :status_eq, "募集中のみ表示" %>
           <%= link_to "クリア", 'items#index',class: "btn btn-secondary search-clear"%>
           <%= f.submit "検索",class: "btn btn-light search-search" %></p>
         <% end %>

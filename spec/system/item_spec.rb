@@ -13,54 +13,44 @@ RSpec.describe '投稿管理機能', type: :system do
     context '投稿を作成した場合' do
       it '作成済みの投稿が表示される' do
         visit items_path
-        expect(page).to have_content 'セーター'
+        expect(page).to have_content 'コート'
       end
     end
 
-    context '複数の投稿を作成した場合' do
-      it '投稿が作成日時の降順に並んでいる' do
+    context '募集終了した場合' do
+      it '募集終了の文字が表示される' do
         visit items_path
-        item_list = all('.name')
-        expect(item_list[0]).to have_content 'セーター1'
-        expect(item_list[1]).to have_content 'セーター2'
+        expect(page).to have_content 'Found'
       end
     end
 
     context '検索をした場合' do
       it "品名検索ができる" do
         visit items_path
-        fill_in 'name', with: 'セーター'
+        fill_in 'q[name_or_description_cont]', with: 'セーター'
         click_button '検索'
         expect(page).to have_content 'セーター'
       end
 
       it "説明検索ができる" do
         visit items_path
-        fill_in 'description', with: '探しています'
+        fill_in 'q[name_or_description_cont]', with: '去年'
         click_button '検索'
-        expect(page).to have_content '探しています'
+        expect(page).to have_content '去年'
       end
 
       it "ステータス検索ができる" do
         visit items_path
-        select '募集中', from: 'status'
+        check '募集中のみ表示'
         click_button '検索'
-        expect(page).to have_content '募集中'
-      end
-
-      it "品名と説明の両方が検索できる" do
-        visit items_path
-        fill_in 'name', with: 'セーター'
-        fill_in 'description', with: '探しています'
-        click_button '検索'
+        sleep 0.6
         expect(page).to have_content 'セーター'
-        expect(page).to have_content '探しています'
       end
 
       it "品名とステータスの両方が検索できる" do
         visit items_path
-        fill_in 'name', with: 'セーター'
-        select '募集中', from: 'status'
+        fill_in 'q[name_or_description_cont]', with: 'セーター'
+        check '募集中のみ表示'
         click_button '検索'
         expect(page).to have_content 'セーター'
         expect(page).to have_content '募集中'
@@ -68,18 +58,33 @@ RSpec.describe '投稿管理機能', type: :system do
 
       it "説明とステータスの両方が検索できる" do
         visit items_path
-        fill_in 'description', with: '探しています'
-        select '募集中', from: 'status'
+        fill_in 'q[name_or_description_cont]', with: '去年'
+        check '募集中のみ表示'
         click_button '検索'
-        expect(page).to have_content '探しています'
-        expect(page).to to have_content '募集中'
+        expect(page).to have_content '去年'
+        expect(page).to have_content '募集中'
       end
 
       it "金額で絞り込みができる" do
         visit items_path
-        fill_in 'q[budget_gteq]', with: '5000'
-        click_button '検索'
-        expect(page).to have_content 'セーター2'
+        fill_in 'q[budget_gteq]', with: '8000'
+        click_button '検索する'
+        expect(page).to have_content 'コート'
+      end
+
+      it "カテゴリーで検索ができる" do
+        visit items_path
+        select 'レディース', from: 'q[category_eq]'
+        click_button '検索する'
+        expect(page).to have_content 'セーター'
+      end
+
+      it "金額とカテゴリーで絞り込みができる" do
+        visit items_path
+        fill_in 'q[budget_gteq]', with: '3000'
+        select 'レディース', from: 'q[category_eq]'
+        click_button '検索する'
+        expect(page).to have_content 'セーター'
       end
     end
   end
