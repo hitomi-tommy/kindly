@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
   has_many :items
+  has_many :comments
   has_many :likes, dependent: :destroy
   has_many :liked_items, through: :likes, source: :item
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
@@ -13,7 +14,7 @@ class User < ApplicationRecord
   mount_uploader :icon, ImageUploader
 
   validates :name, presence: true, length: { maximum: 20 }
-  validates :introduction, length: { maximum: 1000 }
+  validates :introduction, length: { maximum: 500 }
   attr_accessor :current_password
 
   def already_liked?(item)

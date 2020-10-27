@@ -13,6 +13,10 @@
     <p>希望期限: <%= @item.deadline %></p>
     <p>カテゴリー: <%= @item.category %></p>
     <p>情報募集状況: <%= @item.status %></p>
+    <% if current_user == @item.user %>
+      <%= link_to "編集する", edit_item_path(@item.id) ,class: "btn btn-secondary" %>
+      <%= link_to '削除する', item_path(@item.id), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除していいですか？' } %></h6>
+    <% end %><br/><br/>
     <p>いいね件数: <%= @item.likes.count %></p>
 
     <% if current_user.already_liked?(@item) %>
@@ -20,7 +24,7 @@
     <% else %>
       <%= button_to 'いいね', item_likes_path(@item), method: :post, class: 'btn btn-primary' %>
     <% end %>
-  </div>
+  </div><br/>
   <p>コメント一覧</p>
   <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
   <div id="comments_area">
@@ -29,6 +33,7 @@
   </div>
   <!-- コメント入力欄をitemの詳細ページに表示するためのrender -->
   <%= render partial: 'comments/form', locals: { comment: @comment, item: @item } %>
-  <%= link_to '編集', edit_item_path(@item) %> |
-  <%= link_to '戻る', items_path %>
+<br/>
+
+  <p><%= link_to '一覧へ戻る', items_path %></p>
 </div>

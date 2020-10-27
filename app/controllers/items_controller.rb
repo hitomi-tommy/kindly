@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :show, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   def index
-    # @items = Item.all
+    @items = Item.all
     @q = Item.ransack(params[:q])
     @items = @q.result
   end
