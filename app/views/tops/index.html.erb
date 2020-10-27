@@ -46,10 +46,6 @@
               <h6 class="card-deadline"><%= l(item.deadline, format: :short) if item.deadline %></h6>
               <h6 style="color: red; font-size: 16px;"><%= item.status %></h6>
               <h5 style="font-size: 16px;" ><%= link_to '詳細を見る', item_path(item.id), class: "btn btn-info"%>
-              <% if current_user == item.user %>
-                <%= link_to "編集", edit_item_path(item.id) %>
-                <%= link_to '削除', item_path(item.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></h6>
-              <% end %>
             </div>
           </div>
         </div>

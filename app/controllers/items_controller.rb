@@ -2,9 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :show, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   def index
-    @items = Item.all
     @q = Item.ransack(params[:q])
-    @items = @q.result
+    @items = @q.result.order(created_at: :DESC)
   end
 
   def new
@@ -49,7 +48,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, { images: [] }, :category, :budget, :deadline, :status)
+    params.require(:item).permit(:name, :description, { images: [] }, :category, :budget, :deadline, :status, :created_at)
   end
 
   def set_item
