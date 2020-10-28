@@ -24,7 +24,7 @@ gem 'font-awesome-rails'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
 gem 'letter_opener_web'
-
+gem 'gretel'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
