@@ -104,6 +104,10 @@ GEM
     devise-i18n (1.9.2)
       devise (>= 4.7.1)
     diff-lcs (1.4.4)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.9.0)
     execjs (2.7.0)
     factory_bot (6.1.0)
@@ -118,6 +122,9 @@ GEM
       railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gretel (4.1.0)
+      actionview (>= 5.1, < 7.0)
+      railties (>= 5.1, < 7.0)
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
@@ -343,9 +350,11 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-i18n
+  dotenv-rails
   factory_bot_rails
   faker
   font-awesome-rails
+  gretel
   jbuilder (~> 2.5)
   jquery-rails
   launchy
