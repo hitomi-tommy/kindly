@@ -8,12 +8,12 @@ crumb :items do
 end
 
 crumb :user do |user|
-  link "#{user.name}", user_path(user)
+  link "#{user.name}さんのマイページ", user_path(user)
   parent :items
 end
 
 crumb :edit_user do |user|
-  link "編集", edit_user_registration_path
+  link "プロフィールの編集", edit_user_registration_path
   parent :user, user
 end
 
