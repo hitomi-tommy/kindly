@@ -17,21 +17,19 @@ User.create!(name: "AdminUser",
              admin: true
              )
 
-
 User.all.each do |user|
  user.items.create!(
-   name: 'セーター',
-   description: '去年〇〇で売っていたセーターを探しています。
-   品番：〇〇
-   色：白
+   name: 'コート',
+   description: '〇〇のコートを探しています。
+   品番は〇〇
    どなたかお持ちでしたらコメントください。
    よろしくお願いいたします。',
-   images: [open("#{Rails.root}/app/assets/images/sample1.jpg"),
-     open("#{Rails.root}/app/assets/images/sample1.jpg"),
-     open("#{Rails.root}/app/assets/images/sample1.jpg")],
-   budget: 3000,
-   deadline: 2020_10_30,
-   category: 'メンズ',
+   images: [open("#{Rails.root}/app/assets/images/sample5.jpg"),
+     open("#{Rails.root}/app/assets/images/sample5.jpg"),
+     open("#{Rails.root}/app/assets/images/sample5.jpg")],
+   budget: 10000,
+   deadline: 2020_11_31,
+   category: 'レディース',
    status: '募集中'
  )
 end
@@ -94,17 +92,18 @@ end
 
 User.all.each do |user|
  user.items.create!(
-   name: 'コート',
-   description: '〇〇のコートを探しています。
-   品番は〇〇
+   name: 'セーター',
+   description: '去年〇〇で売っていたセーターを探しています。
+   品番：〇〇
+   色：白
    どなたかお持ちでしたらコメントください。
    よろしくお願いいたします。',
-   images: [open("#{Rails.root}/app/assets/images/sample5.jpg"),
-     open("#{Rails.root}/app/assets/images/sample5.jpg"),
-     open("#{Rails.root}/app/assets/images/sample5.jpg")],
-   budget: 10000,
-   deadline: 2020_11_31,
-   category: 'レディース',
+   images: [open("#{Rails.root}/app/assets/images/sample1.jpg"),
+     open("#{Rails.root}/app/assets/images/sample1.jpg"),
+     open("#{Rails.root}/app/assets/images/sample1.jpg")],
+   budget: 3000,
+   deadline: 2020_10_30,
+   category: 'メンズ',
    status: '募集中'
  )
 end
