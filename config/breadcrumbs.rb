@@ -4,11 +4,11 @@ end
 
 crumb :items do
   link "探し物一覧", items_path
-  parent :Top
+  parent :root
 end
 
 crumb :user do |user|
-  link user.name, user_path(user)
+  link "#{user.name}", user_path(user)
   parent :items
 end
 
@@ -18,10 +18,21 @@ crumb :edit_user do |user|
 end
 
 crumb :item do |item|
-  link item.name, item_path
+  link "#{item.name}", item_path
   parent :items
 end
 
-crumb :edit_items do |item|
+crumb :edit_item do |item|
   link "編集", edit_item_path
   parent :item, item
+end
+
+crumb :create_item do |item|
+  link "新規作成", new_item_path
+  parent :items
+end
+
+crumb :notification do |notification|
+  link "通知", notifications_url
+  parent :items
+end
