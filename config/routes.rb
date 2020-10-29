@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :tops, only: [:index]
 
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development? 
 
 
   root 'tops#index'
