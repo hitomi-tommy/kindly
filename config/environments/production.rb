@@ -64,14 +64,14 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "kindly_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { :host => ENV['HOST_DEFAULT_URL'] }
+  config.action_mailer.default_url_options = { :host => 'stark-hamlet-04862.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
     user_name: ENV['MAIL_USERNAME'],
     password: ENV['MAIL_PASSWORD'],
-    domain: ENV['APP_DOMAIN'],
+    domain: 'stark-hamlet-04862.herokuapp.com',
     enable_starttls_auto: true,
     authentication: :plain
     }
