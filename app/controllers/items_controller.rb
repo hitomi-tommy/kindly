@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   def index
     @q = Item.ransack(params[:q])
-    @items = @q.result.order(created_at: :DESC)
+    @items = @q.result.order(created_at: :DESC).page(params[:page]).per(18)
   end
 
   def new
