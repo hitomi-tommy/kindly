@@ -22,7 +22,7 @@ $(function() {
   $('.carousel').slick({
      dots: true,
      autoplay: true,
-     autoplaySpeed: 3000,
+     autoplaySpeed: 10000,
      pauseOnHover: true,
   });
 });

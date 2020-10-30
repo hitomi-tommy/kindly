@@ -1,4 +1,4 @@
-3.times do |n|
+2.times do |n|
   name = Faker::Name.name
   email = Faker::Internet.email
   password = "password"
@@ -28,7 +28,7 @@ User.all.each do |user|
      open("#{Rails.root}/app/assets/images/sample5.jpg"),
      open("#{Rails.root}/app/assets/images/sample5.jpg")],
    budget: 10000,
-   deadline: 2020_11_31,
+   deadline: '2020_11_31',
    category: 'レディース',
    status: '募集中'
  )
@@ -47,7 +47,7 @@ User.all.each do |user|
      open("#{Rails.root}/app/assets/images/sample2.jpg"),
      open("#{Rails.root}/app/assets/images/sample2.jpg")],
    budget: 5000,
-   deadline: 2020_10_31,
+   deadline: '2020_10_31',
    category: 'レディース',
    status: '募集中'
  )
@@ -66,7 +66,7 @@ User.all.each do |user|
      open("#{Rails.root}/app/assets/images/sample3.jpg"),
      open("#{Rails.root}/app/assets/images/sample3.jpg")],
    budget: 50000,
-   deadline: 2020_11_7,
+   deadline: '2020_11_7',
    category: 'その他',
    status: '募集中'
  )
@@ -84,7 +84,7 @@ User.all.each do |user|
      open("#{Rails.root}/app/assets/images/sample4.jpg"),
      open("#{Rails.root}/app/assets/images/sample4.jpg")],
    budget: 5000,
-   deadline: 2020_11_15,
+   deadline: '2020_11_15',
    category: '家電・スマホ・カメラ',
    status: '募集中'
  )
@@ -102,7 +102,7 @@ User.all.each do |user|
      open("#{Rails.root}/app/assets/images/sample1.jpg"),
      open("#{Rails.root}/app/assets/images/sample1.jpg")],
    budget: 3000,
-   deadline: 2020_10_30,
+   deadline: '2020_10_30',
    category: 'メンズ',
    status: '募集中'
  )
