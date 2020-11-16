@@ -6,7 +6,7 @@
     <div class="alert alert-warning"><%#= alert %></p>
   <%# end %>
 </div> -->
-<div class="mx-auto" style="width: 200px;">
+<div class="mx-auto" style="width: 250px;">
   <h3><%= t('.sign_in') %></h3>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -32,8 +32,8 @@
     </div>
   <% end %>
 
-  <div>
-    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-primary" %>
+  <div class="guest_sign_in">
+    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-info" %>
   </div>
 
   <%= render "devise/shared/links" %>
