@@ -1,3 +1,4 @@
+<% breadcrumb :items %>
 <div class="search">
     <div class="full-searchbox ">
       <div class="SearchBox">
@@ -68,7 +69,7 @@
                 <h6 class="card-budget">予算：<%= item.budget %>円</h6>
                 <h6 class="card-deadline"><%= l(item.deadline, format: :short) if item.deadline %></h6>
                 <h6 style="color: red; font-size: 16px;"><%= item.status %></h6>
-                <h5 style="font-size: 16px;" ><%= link_to '詳細を見る', item_path(item.id), class: "btn btn-primary" %>
+                <h5 style="font-size: 16px;" ><%= link_to '詳細を見る', item_path(item.id), class: "btn btn-info" %>
                 <% if current_user == item.user %>
                   <%= link_to "編集", edit_item_path(item.id), class: "btn btn-secondary" %>
                 <% end %>
@@ -80,4 +81,5 @@
       </div>
     </div>
   </diV>
+  <%= paginate @items %>
 </div>

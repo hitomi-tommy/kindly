@@ -1,13 +1,10 @@
-
 <div class="search">
   <div class="full-searchbox">
     <div class="SearchBox">
       <!-- <i class="fas fa-search"></i> -->
       <%= search_form_for @q do |f| %>
         <p><%= f.search_field :name_or_description_cont, {placeholder: "キーワードで検索",class: "form-group form-control search_name" } %></p>
-        <p class="search_status">
-        <%= f.check_box :status_eq, {}, "募集中", "募集終了" %>
-        <%= f.label :status_eq, "募集中のみ表示" %>
+        <p class="search_status"><%= f.check_box :status_eq, {}, "募集中", "募集終了" %>募集中のみ表示
         <%= link_to "クリア", 'tops#index',class: "btn btn-secondary search-clear"%>
         <%= f.submit "検索",class: "btn btn-light search-search" %></p>
       <% end %>
@@ -46,10 +43,14 @@
               <h6 class="card-deadline"><%= l(item.deadline, format: :short) if item.deadline %></h6>
               <h6 style="color: red; font-size: 16px;"><%= item.status %></h6>
               <h5 style="font-size: 16px;" ><%= link_to '詳細を見る', item_path(item.id), class: "btn btn-info"%>
+              <% if current_user == item.user %>
+                <%= link_to "編集", edit_item_path(item.id), class: "btn btn-secondary" %>
+              <% end %>
             </div>
           </div>
         </div>
           <% end %>
       </div>
   </div>
+  <%= paginate @items %>
 </div>

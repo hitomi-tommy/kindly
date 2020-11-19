@@ -1,26 +1,32 @@
+<% breadcrumb :user, @user %>
 <div class="container">
-
-
+<br/><hr>
 <h1>My Profile</h1>
-<div>
+<div class="mx-auto">
   <% if @user.icon? %>
     <%= image_tag @user.icon_url %>
   <% else %>
     <%= image_tag "/assets/default.png" %>
   <% end %>
 
-</div>
-<h3>ユーザー名</h3>
+
+<h4>ユーザー名</h4>
 <%= @user.name %><br/><br/>
 
-<h3>プロフィール</h3>
+<h4>プロフィール</h4>
 <%= @user.introduction%><br/><br/>
 
-<div>
+
   <% if @user == current_user %>
-    <p><%= link_to "プロフィールの編集", edit_user_registration_path %></p>
+    <p><%= link_to "プロフィールの編集", edit_user_registration_path, class:"btn btn-primary" %></p>
+
+</div>
+  <br/><hr>
+
+    <div class="row">
     <h3>お気に入り一覧</h3>
-      <% @likes.each do |like| %>
+    <div class="carousel">
+      <% @likes.shuffle.each do |like| %>
       <% item = Item.find_by(id: like.item_id) %>
        <div class="card-body">
           <%= image_tag item.images.first.to_s, gravity: :center, size: "200x200" %>
@@ -32,20 +38,26 @@
           <h6 style="color: red; font-size: 16px;"><%= item.status %></h6>
           <h5 style="font-size: 16px;" ><%= link_to '詳細を見る', item_path(item.id), class: "btn btn-info" %>
         </div>
-      <% end %><br/><br/>
-      <h3>私の投稿一覧</h3>
-        <% @items.each do |item| %>
-         <div class="card-body">
-            <%= image_tag item.images.first.to_s, gravity: :center, size: "200x200" %>
-            <h5 class="card-name"><%= link_to item.name.truncate(10) , item_path(item) %></h5>
-            <h6 class="card-description"><%= item.description.truncate(30)  %></h6>
-            <span class="card-category bg-warning"><%= item.category %></span>
-            <h6 class="card-budget">予算：<%= item.budget %>円</h6>
-            <h6 class="card-deadline"><%= l(item.deadline, format: :short) if item.deadline %></h6>
-            <h6 style="color: red; font-size: 16px;"><%= item.status %></h6>
-            <h5 style="font-size: 16px;" ><%= link_to '詳細を見る', item_path(item.id), class: "btn btn-info" %>
-          </div>
-        <% end %>
+      <% end %>
+    </div>
+    <br/><br/>
+
+    <div class="row">
+    <h3>私の投稿一覧</h3>
+    <div class="carousel">
+      <% @items.shuffle.each do |item| %>
+       <div class="card-body">
+          <%= image_tag item.images.first.to_s, gravity: :center, size: "200x200" %>
+          <h5 class="card-name"><%= link_to item.name.truncate(10) , item_path(item) %></h5>
+          <h6 class="card-description"><%= item.description.truncate(30)  %></h6>
+          <span class="card-category bg-warning"><%= item.category %></span>
+          <h6 class="card-budget">予算：<%= item.budget %>円</h6>
+          <h6 class="card-deadline"><%= l(item.deadline, format: :short) if item.deadline %></h6>
+          <h6 style="color: red; font-size: 16px;"><%= item.status %></h6>
+          <h5 style="font-size: 16px;" ><%= link_to '詳細を見る', item_path(item.id), class: "btn btn-info" %>
+      </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
 </div>

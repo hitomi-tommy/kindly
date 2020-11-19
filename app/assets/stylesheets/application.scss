@@ -26,7 +26,7 @@
 }
 
 .jumbotron {
-   background-image:url("main.jpg");
+   background-image:image-url("main.jpg");
    background-size: cover;
    color: white;
    height: 35rem;
@@ -64,4 +64,18 @@
 .sidebar {
   font-weight: normal;
   color: #696969
+}
+
+.carousel{
+  width: 25rem;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.guest_sign_in {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

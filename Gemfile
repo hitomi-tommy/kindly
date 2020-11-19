@@ -23,7 +23,12 @@ gem 'faker'
 gem 'font-awesome-rails'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
-gem 'letter_opener_web'
+gem 'gretel'
+gem 'dotenv-rails'
+gem 'kaminari'
+gem 'fog-aws'
+gem 'unicorn'
+gem 'mini_racer', platforms: :ruby
 
 
 group :development, :test do
@@ -36,12 +41,20 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
   gem 'launchy'
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'letter_opener_web'
 
 end
 

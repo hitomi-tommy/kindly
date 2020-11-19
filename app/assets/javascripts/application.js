@@ -17,3 +17,12 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('.carousel').slick({
+     dots: true,
+     autoplay: true,
+     autoplaySpeed: 10000,
+     pauseOnHover: true,
+  });
+});
