@@ -25,7 +25,7 @@
     <%= form.label :イメージ画像 %>
     <% @item.images.each do |image| %>
       <%= hidden_field :item, :images, multiple: true, value: image.identifier %>
-      <%= image_tag image.image-url %>
+      <%= image_tag image.url %>
     <% end %>
     <%= form.file_field :images, multiple: true %>
   </div><br/>
