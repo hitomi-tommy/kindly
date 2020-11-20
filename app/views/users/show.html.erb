@@ -6,7 +6,7 @@
   <% if @user.icon? %>
     <%= image_tag @user.icon_url %>
   <% else %>
-    <%= image_tag "/assets/images/fallback/default.png" %>
+    <%= image_tag asset_path("/assets/default.png") %>
   <% end %>
 
 
