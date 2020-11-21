@@ -62,7 +62,11 @@
                 <% if item.status == "募集終了" %>
                   <p class="card-text">Found</p>
                 <% end %>
-                <%= image_tag item.images.first.to_s, gravity: :center, size: "200x200" %>
+                <% if item.images? %>
+                  <%= image_tag item.images.first.to_s, gravity: :center, size: "200x200" %>
+                <% else %>
+                  <%= image_tag 'default_image.png', class: 'mypage-article-img',gravity: :center, size: "200x200" %>
+                <% end %>
                 <h5 class="card-name"><%= link_to item.name.truncate(10) , item_path(item) %></h5>
                 <h6 class="card-description"><%= item.description.truncate(30)  %></h6>
                 <span class="card-category bg-warning"><%= item.category %></span>
